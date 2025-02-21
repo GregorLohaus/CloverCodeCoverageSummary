@@ -196,8 +196,6 @@ export async function run(): Promise<{summary: string; details: string}> {
       const parser = new XMLParser(options)
       const reportData = parser.parse(xmlData)
       let coverageFiles =
-        reportData.coverage.project?.file ||
-        reportData.coverage.project.package?.file ||
         reportData.coverage.project.package?.reduce(
           (_coverageFiles: CoverageFile[], packageData: CoveragePackage) => [
             ..._coverageFiles,
