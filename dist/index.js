@@ -101,7 +101,7 @@ function getMetricRow(name, metrics, bold = false) {
 }
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
-        var _a, _b, _c;
+        var _a;
         const summary = [''];
         const details = [''];
         try {
@@ -113,14 +113,12 @@ function run() {
                 };
                 const parser = new fast_xml_parser_1.XMLParser(options);
                 const reportData = parser.parse(xmlData);
-                let coverageFiles = ((_a = reportData.coverage.project) === null || _a === void 0 ? void 0 : _a.file) ||
-                    ((_b = reportData.coverage.project.package) === null || _b === void 0 ? void 0 : _b.file) ||
-                    ((_c = reportData.coverage.project.package) === null || _c === void 0 ? void 0 : _c.reduce((_coverageFiles, packageData) => [
-                        ..._coverageFiles,
-                        ...(Array.isArray(packageData.file)
-                            ? packageData.file
-                            : [packageData.file])
-                    ], []));
+                let coverageFiles = (_a = reportData.coverage.project.package) === null || _a === void 0 ? void 0 : _a.reduce((_coverageFiles, packageData) => [
+                    ..._coverageFiles,
+                    ...(Array.isArray(packageData.file)
+                        ? packageData.file
+                        : [packageData.file])
+                ], []);
                 if (!Array.isArray(coverageFiles)) {
                     coverageFiles = [coverageFiles];
                 }
